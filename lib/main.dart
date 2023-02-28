@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_pdf_upload/HttpUploadService.dart';
 import 'package:image_picker/image_picker.dart';
 
 void main() {
@@ -34,13 +35,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   File? _image;
-
+  final HttpUploadService _httpUploadService = HttpUploadService();
   Future getImage(ImageSource source) async{
     try {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
       final imageTemporary = File(image.path);
 
+        await _httpUploadService.uploadImage(file: image);
       setState(() {
         this._image = imageTemporary;
       });
