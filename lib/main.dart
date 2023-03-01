@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
       if (image == null) return;
       final imageTemporary = File(image.path);
 
-        await _httpUploadService.uploadImage(file: image);
+        await _httpUploadService.uploadImage(filePath: image);
       setState(() {
         this._image = imageTemporary;
       });
