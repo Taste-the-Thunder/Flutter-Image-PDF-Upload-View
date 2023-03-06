@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final HttpUploadService _httpUploadService = HttpUploadService();
   Future getImage(ImageSource source) async{
     try {
-      final image = await ImagePicker().pickImage(source: source);
+      final image = await ImagePicker().pickImage(source: source, maxHeight: 800, maxWidth: 600,imageQuality: 100);
       if (image == null) return;
       final imageTemporary = File(image.path);
 
@@ -94,3 +94,6 @@ Widget CustomButton({
     ),
   );
 }
+
+
+
